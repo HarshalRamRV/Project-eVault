@@ -5,11 +5,16 @@
   grid-gap: 10px;
   grid-auto-rows: 350px;
   margin: 10px;
+  margin-bottom: 30px;
+
+  
 }
 
 .image-list img {
   width: 100%; /* Use percentage for responsive images */
-  height: auto; /* Maintain aspect ratio */
+  height: 100%; /* Maintain aspect ratio */
+  object-fit: cover;
+
 }
 
 /* Centered text */

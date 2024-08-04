@@ -23,6 +23,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  z-index: 1;
 }
 
 .App-link {
@@ -131,15 +132,20 @@ p {
   align-items: center;
   margin: 0;
   padding: 1vh 1vw;
+  z-index: 1;
+  position: initial;
+  width: 100%;
 }
 .con{
+  margin-top: 5vh;
+
   display: flex;
   flex-direction: column;
-  align-items: center;
   height: 90vh;
   justify-content: center;
 }
 .card{
+  margin-top: 10vh;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
   background: white;

@@ -1,15 +1,21 @@
-const hre = require("hardhat");
+const { ethers } = require("hardhat");
 
 async function main() {
-  const Upload = await hre.ethers.getContractFactory("Upload");
-  const upload = await Upload.deploy();
+  const [deployer] = await ethers.getSigners();
+  console.log("Deploying contracts with the account:", deployer.address);
 
-  await upload.deployed();
+  const balance = await deployer.getBalance();
+  console.log("Account balance:", ethers.utils.formatEther(balance), "ETH");
 
-  console.log("Library deployed to:", upload.address);
+  const Upload = await ethers.getContractFactory("Upload");
+  const uploadContract = await Upload.deploy();
+
+  console.log("Upload contract deployed to address:", uploadContract.address);
 }
 
-main().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
-});
+main()
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.error("Error deploying contracts:", error);
+    process.exit(1);
+  });

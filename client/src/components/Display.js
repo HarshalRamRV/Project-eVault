@@ -19,8 +19,8 @@ const Display = ({ contract, account }) => {
 
       if (dataArray && dataArray.length > 0) {
         const images = dataArray.map((item, i) => (
-          <a href={item} key={i} target="_blank">
-            <img src={""} alt="doucment" className="image-list" />
+          <a key={i}>
+            <img src={item} alt="doucment" className="image-list" />
           </a>
         ));
         setData(images);
