@@ -1,44 +1,68 @@
-.top {
-  margin: 40px;
-}
 
+
+/* File Upload Button Styles */
 input[type="file"] {
   display: none;
 }
 
 .choose {
-  background-color: initial;
-  background-image: linear-gradient(-180deg, #5aff15, #00b712);
+  background-color: #444;
+  background-image: linear-gradient(-180deg, #666, #333);
   border-radius: 6px;
   color: #ffffff;
-  padding: 5px 10px;
+  padding: 10px 20px;
   border-radius: 6px;
   margin-right: 10px;
-  padding-bottom: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
 }
+
 .choose:hover {
-  box-shadow: rgba(253, 76, 0, 0.5) 0 3px 8px;
+  background: linear-gradient(135deg, #333, #1a1a1a);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
 }
 
 .upload {
-  border: 1px solid #13aa52;
-  background-color: #13aa52;
+  background-color: #007bff;
+  border: 1px solid #007bff;
   color: #ffffff;
-  padding: 5px 10px;
+  padding: 10px 20px;
   border-radius: 6px;
   margin-left: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease, border-color 0.3s ease;
 }
 
 .upload:hover {
-  border: 1px solid #13aa52;
-  background-color: #a5efc1;
-  color: #ffffff;
-  padding: 5px 10px;
+  background-color: #0056b3;
+  border-color: #0056b3;
 }
 
 .upload:disabled,
 .upload[disabled] {
-  border: 1px solid #999999;
-  background-color: #cccccc;
-  color: #666666;
+  background-color: #555;
+  border: 1px solid #777;
+  color: #888;
+}
+
+/* Address Input */
+.address {
+  display: block;
+  margin: auto;
+  height: 40px; /* Increased height for better usability */
+  max-width: 330px; /* Responsive max-width */
+  text-align: center;
+  background-color: #444; /* Dark background for input */
+  color: #ddd; /* Light text color */
+  border-radius: 4px;
+  padding: 0 12px;
+  border: 1px solid #666; /* Dark border color */
+  box-sizing: border-box;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.address:focus {
+  background-color: #555; /* Slightly lighter background on focus */
+  border-color: #888; /* Lighter border color on focus */
+  outline: none;
 }

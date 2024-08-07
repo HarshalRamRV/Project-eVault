@@ -1,26 +1,36 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Display.css";
-import defaultImage from "./default-image.jpg"; // Import your default image
+import defaultImage from "./default-image.jpg";
+import ImagePopup from "./ImagePopup"; // Import the ImagePopup component
 
 const Display = ({ contract, account }) => {
   const [data, setData] = useState([]);
-  const [error, setError] = useState(""); // State to handle errors
+  const [error, setError] = useState(""); 
+  const [loading, setLoading] = useState(false); 
+  const [selectedImage, setSelectedImage] = useState(null); // State to manage selected image for popup
 
-  const getdata = async () => {
+  const getData = async () => {
+    if (!contract) {
+      setError("Contract is not initialized");
+      return;
+    }
+
+    setLoading(true);
+    setError(""); 
+
     try {
-      const Otheraddress = document.querySelector(".address").value;
-      let dataArray;
-
-      if (Otheraddress) {
-        dataArray = await contract.display(Otheraddress);
-      } else {
-        dataArray = await contract.display(account);
-      }
+      const Otheraddress = document.querySelector(".address")?.value || account;
+      const dataArray = await contract.display(Otheraddress);
 
       if (dataArray && dataArray.length > 0) {
         const images = dataArray.map((item, i) => (
-          <a key={i}>
-            <img src={item} alt="doucment" className="image-list" />
+          <a key={i} onClick={() => setSelectedImage(item)}>
+            <img
+              src={item || defaultImage}
+              alt="document"
+              className="image-list"
+              onError={(e) => e.target.src = defaultImage} 
+            />
           </a>
         ));
         setData(images);
@@ -28,12 +38,23 @@ const Display = ({ contract, account }) => {
         setError("No image to display");
       }
     } catch (e) {
-      setError(e.message); // Handle errors and set the error state
+      setError(`Error fetching data: ${e.message}`);
+    } finally {
+      setLoading(false);
     }
   };
 
+  useEffect(() => {
+    if (contract && account) {
+      getData();
+    } else {
+      setError("Contract or account not available");
+    }
+  }, [contract, account]);
+
   return (
     <>
+      {loading && <div className="loading-spinner">Loading...</div>}
       {error ? (
         <div className="error">{error}</div>
       ) : (
@@ -43,10 +64,16 @@ const Display = ({ contract, account }) => {
         type="text"
         placeholder="Enter Address"
         className="address"
-      ></input>
-      <button className="center button" onClick={getdata}>
+      />
+      <button className="center button" onClick={getData}>
         Get Data
       </button>
+      {selectedImage && (
+        <ImagePopup 
+          imageSrc={selectedImage} 
+          onClose={() => setSelectedImage(null)} 
+        />
+      )}
     </>
   );
 };

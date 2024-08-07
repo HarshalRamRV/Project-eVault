@@ -48,7 +48,7 @@ function App() {
     <>
       <div className="App">
         <div className="navbar">
-          eVault{" "}
+          eVault
           <button className="share" onClick={() => setModalOpen(true)}>
             Share
           </button>

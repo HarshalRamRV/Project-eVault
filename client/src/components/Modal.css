@@ -1,29 +1,35 @@
+/* Modal Background */
 .modalBackground {
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.5); /* Darker overlay */
   position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 2;
+  margin-top: 1rem;
 }
 
+/* Modal Container */
 .modalContainer {
   width: 500px;
   height: 200px;
   border-radius: 12px;
-  background-color: white;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background-color: #1e1e1e; /* Dark background color */
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 15px;
   display: flex;
   flex-direction: column;
   padding: 25px;
+  color: #e0e0e0; /* Light text color */
 }
 
 .modalContainer {
   display: inline-block;
   text-align: center;
 }
+
+/* Title Styles */
 .title {
   display: inline-block;
   text-align: center;
@@ -39,8 +45,10 @@
   border: none;
   font-size: 1px;
   cursor: pointer;
+  color: #e0e0e0; /* Light text color for button */
 }
 
+/* Modal Body */
 .modalContainer .body {
   flex: 50%;
   display: flex;
@@ -50,6 +58,7 @@
   text-align: center;
 }
 
+/* Modal Footer */
 .modalContainer .footer {
   flex: 20%;
   display: flex;
@@ -71,15 +80,4 @@
 
 #cancelBtn {
   background-color: crimson;
-}
-.address {
-  display: block;
-  margin: auto;
-  height: 30px;
-  width: 330px;
-  text-align: center;
-}
-
-input[type="text"]:focus {
-  background-color: lightblue;
 }
